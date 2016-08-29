@@ -10,6 +10,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class CoolWeatherDB {
 	
@@ -45,12 +46,16 @@ public class CoolWeatherDB {
 	public List<Province> loadProvinces(){
 		List<Province> list =new ArrayList<Province>();
 		Cursor cursor = db.query("Province", null, null, null, null, null, null);
+		Log.d("this", "2.1");
 		if (cursor.moveToFirst()){
+			Log.d("this", "2.2");
 			do{
 				Province province =new Province();
-				province.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+				Log.d("this", "2.3");
+				province.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				province.setProvinceName(cursor.getString(cursor.getColumnIndex("province_name")));
 				province.setProvinceCode(cursor.getString(cursor.getColumnIndex("province_code")));
+				Log.d("this", "2.4");
 				list.add(province);
 			}while (cursor.moveToNext());		
 		}
